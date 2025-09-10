@@ -1,0 +1,22 @@
+name: CD - Deploy no GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar código
+        uses: actions/checkout@v3
+
+      - name: Build
+        run: echo "Hello World do Workshop CI/CD" > index.html
+
+      - name: Deploy no GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
